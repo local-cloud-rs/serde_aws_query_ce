@@ -29,6 +29,7 @@ _**Note**: serialization to AWS Query string will be added later._
 - [x] Vec support
 - [x] Enum support
 - [x] Flattened Vec support
+- [ ] AWS Smithy types
 
 License
 =======
