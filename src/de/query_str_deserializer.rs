@@ -38,7 +38,9 @@ impl<'de> serde::Deserializer<'de> for QueryStrDeserializer<'de> {
         self.0.into_deserializer().deserialize_any(visitor)
     }
 
-    fn deserialize_enum<V>(self, _: &'static str, _: &'static [&'static str], visitor: V) -> Result<V::Value, Self::Error>
+    fn deserialize_enum<V>(
+        self, _: &'static str, _: &'static [&'static str], visitor: V,
+    ) -> Result<V::Value, Self::Error>
     where
         V: Visitor<'de>,
     {
