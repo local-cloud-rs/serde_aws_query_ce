@@ -9,6 +9,7 @@ keywords = ["serde", "serialization", "smithy", "aws", "querystring"]
 readme = "README.md"
 exclude = [".github", "target", "Cargo.lock"]
 license = "Apache-2.0"
+repository = "https://github.com/local-cloud-rs/serde_aws_query_ce"
 
 [dependencies]
 serde = "1.0"
