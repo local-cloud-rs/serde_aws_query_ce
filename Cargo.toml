@@ -1,0 +1,19 @@
+[package]
+name = "serde_aws_query_ce"
+categories = ["encoding", "web-programming"]
+version = "0.1.0"
+edition = "2021"
+keywords = ["serde", "serialization", "smithy", "aws", "querystring"]
+readme = "README.md"
+
+[dependencies]
+serde = "1.0"
+form_urlencoded = "1.2"
+aws-smithy-types = "1.0"
+log = "0.4.20"
+
+[dev-dependencies]
+serde_derive = "1.0"
+serde_urlencoded = "0.7"
+serde_with = "3.4"
+env_logger = "*"
