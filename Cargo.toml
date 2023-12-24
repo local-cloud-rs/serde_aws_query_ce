@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2021"
 keywords = ["serde", "serialization", "smithy", "aws", "querystring"]
 readme = "README.md"
-exclude = [".github", "target"]
+exclude = [".github", "target", "Cargo.lock"]
 
 [dependencies]
 serde = "1.0"
