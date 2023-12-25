@@ -1,4 +1,9 @@
-# serde_aws_query_ce
+# serde_aws_query_ce [![Build](https://github.com/local-cloud-rs/serde_aws_query_ce/actions/workflows/ci.yaml/badge.svg)](https://github.com/local-cloud-rs/serde_aws_query_ce/actions/workflows/ci.yaml) [![Latest Version]][crates.io] [![Documentation]][docs-rs] 
+
+[Latest Version]: https://img.shields.io/crates/v/serde_aws_query_ce.svg
+[crates.io]: https://crates.io/crates/serde_aws_query_ce
+[Documentation]: https://docs.rs/serde_aws_query_ce/badge.svg
+[docs-rs]: https://docs.rs/serde_aws_query_ce/
 
 This is a Rust library for serializing to and deserializing from
 [AWS Query string](https://smithy.io/2.0/aws/protocols/aws-query-protocol.html?highlight=query#aws-protocols-awsqueryname-query-key-naming).
