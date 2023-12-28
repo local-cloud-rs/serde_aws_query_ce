@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::collections::btree_map::IntoIter;
 use std::collections::BTreeMap;
+use std::iter::Peekable;
 
 use serde::de::{DeserializeSeed, EnumAccess, MapAccess, VariantAccess, Visitor};
 use serde::forward_to_deserialize_any;
@@ -13,7 +14,7 @@ use crate::de::query_str_deserializer::QueryStrDeserializer;
 
 /// A deserializer for the AWS Query format.
 pub(crate) struct AwsQueryDeserializer<'de> {
-    pub iter: IntoIter<QueryKey<'de>, Node<'de>>,
+    pub iter: Peekable<IntoIter<QueryKey<'de>, Node<'de>>>,
     pub value: Option<Node<'de>>,
 }
 
@@ -38,7 +39,7 @@ impl<'de> AwsQueryDeserializer<'de> {
 impl<'de> From<BTreeMap<QueryKey<'de>, Node<'de>>> for AwsQueryDeserializer<'de> {
     fn from(map: BTreeMap<QueryKey<'de>, Node<'de>>) -> Self {
         AwsQueryDeserializer {
-            iter: map.into_iter(),
+            iter: map.into_iter().peekable(),
             value: None,
         }
     }
@@ -51,11 +52,11 @@ impl<'de> serde::Deserializer<'de> for AwsQueryDeserializer<'de> {
     where
         V: Visitor<'de>,
     {
-        if self.iter.next().is_none() {
-            return visitor.visit_unit();
-        }
-
-        Err(DeError::RootNode("primitive".to_owned()))
+        return if self.iter.peek().is_none() {
+            visitor.visit_unit()
+        } else {
+            self.deserialize_map(visitor)
+        };
     }
 
     fn deserialize_newtype_struct<V>(self, _name: &'static str, visitor: V) -> Result<V::Value, Self::Error>

@@ -30,7 +30,10 @@ impl<'de> NodeParser<'de> {
             Node::Nested(map) => map.into_iter(),
             _ => BTreeMap::default().into_iter(),
         };
-        Ok(AwsQueryDeserializer { iter, value: None })
+        Ok(AwsQueryDeserializer {
+            iter: iter.peekable(),
+            value: None,
+        })
     }
 
     fn parse_indexed_seq_first_time(&mut self, parts: &[&str], value: &str) -> Result<Node<'de>, DeError> {

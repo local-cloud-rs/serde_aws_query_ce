@@ -7,7 +7,7 @@ use crate::de::aws_query::AwsQueryDeserializer;
 use crate::de::error::DeError;
 
 mod aws_query;
-mod error;
+pub mod error;
 mod node;
 mod node_deserializer;
 mod node_parser;

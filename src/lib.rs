@@ -2,7 +2,7 @@
 
 #![forbid(unsafe_code)]
 
-pub use de::{from_bytes, from_reader, from_str};
+pub use de::{error::DeError, from_bytes, from_reader, from_str};
 
 mod de;
 mod ext;
@@ -282,6 +282,24 @@ mod tests {
             )
             .unwrap(),
             q
+        );
+    }
+
+    #[test]
+    fn deserialize_enum_top_level() {
+        #[derive(Deserialize, Debug, PartialEq)]
+        enum EnumStruct {
+            Value1 { field1: String },
+            Value2 { field2: String },
+        }
+
+        let params = "Value1.field1=test";
+        let rec_params: EnumStruct = super::from_str::<EnumStruct>(params).unwrap();
+        assert_eq!(
+            rec_params,
+            EnumStruct::Value1 {
+                field1: "test".to_owned()
+            }
         );
     }
 

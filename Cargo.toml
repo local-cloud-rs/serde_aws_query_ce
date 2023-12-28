@@ -1,6 +1,6 @@
 [package]
 name = "serde_aws_query_ce"
-version = "0.1.0"
+version = "0.1.1"
 description = "Serde support for AWS Query protocol"
 edition = "2021"
 authors = ["Maksim Dadzerkin <maksim.dadzerkin@gmail.com>"]
